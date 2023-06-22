@@ -28,7 +28,9 @@ class BirthdayAppTestCase(unittest.TestCase):
         with self.assertRaises(ValueError):
             check_is_in_range(150, 1000, 2000)
 
-#testy na check month,day,year
+
+# testy na check month,day,year
+
 
 if __name__ == '__main__':
     unittest.main()
