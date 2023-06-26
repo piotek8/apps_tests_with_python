@@ -48,7 +48,7 @@ class BirthdayAppTestCase(unittest.TestCase):
 
     def test_check_year_in_range(self):
         with self.assertRaises(ValueError):
-            check_year(2024)
+            check_year (2024)
         with self.assertRaises(ValueError):
             check_year (-1)
 
