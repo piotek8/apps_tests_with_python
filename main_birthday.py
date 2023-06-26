@@ -20,19 +20,26 @@ def check_is_in_range(param, begin, end):
 
 def check_year(year):
     check_is_int(year)
-    check_is_in_range(year, 0, 2023)
+    check_is_in_range(year, 0, 2023 + 1)
 
 
 # test na 0,2023 i , -1 2024
 
 def check_month(month):
     check_is_int(month)
-    check_is_in_range(month, 1, 12)
+    check_is_in_range(month, 1, (12 + 1))
 
 
-def check_day(day):
+# def check_day(day, year, month):
+#    check_is_int(day)
+#    max_day = calendar.monthrange(year, month)[1]
+#    check_is_in_range(day, 1, max_day)
+
+def check_day(day, year, month):
     check_is_int(day)
-    check_is_in_range(day, 1, 31)
+    max_day = calendar.monthrange(year, month)[1]
+    if not 1 <= day <= max_day:
+        raise ValueError('Invalid day value. Day must be between 1 and {} for month {}.'.format(max_day, month))
 
 
 def get_user_input():
@@ -42,7 +49,7 @@ def get_user_input():
     month = int(input("What month were you born? "))
     check_month(month)
     day = int(input("What day were you born? "))
-    check_day(year, month, day)
+    check_day(day, year, month)
     return datetime.date(year, month, day)
 
 
