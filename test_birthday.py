@@ -50,7 +50,7 @@ class BirthdayAppTestCase(unittest.TestCase):
         with self.assertRaises(ValueError):
             check_year(2024)
         with self.assertRaises(ValueError):
-            check_year(-1)
+            check_year (-1)
 
 
 if __name__ == '__main__':
