@@ -2,7 +2,8 @@ import unittest
 import datetime
 from unittest.mock import patch
 
-from main_birthday import compute_days_between_dates, get_user_input, check_is_in_range
+from main_birthday import compute_days_between_dates, get_user_input, check_is_in_range, check_year, check_day, \
+    check_month
 
 
 class BirthdayAppTestCase(unittest.TestCase):
@@ -28,8 +29,28 @@ class BirthdayAppTestCase(unittest.TestCase):
         with self.assertRaises(ValueError):
             check_is_in_range(150, 1000, 2000)
 
+    # testy na check month,day,year
 
-# testy na check month,day,year
+    def test_check_days_in_range(self):
+        with self.assertRaises(ValueError) as context:
+            check_day(30, 2023, 2)
+        self.assertEqual(str(context.exception), 'Invalid day value. Day must be between 1 and 28 for month 2.')
+
+        with self.assertRaises(ValueError) as context:
+            check_day(-1, 2023, 2)
+        self.assertEqual(str(context.exception), 'Invalid day value. Day must be between 1 and 28 for month 2.')
+
+    def test_check_months_in_range(self):
+        with self.assertRaises(ValueError):
+            check_month(0)
+        with self.assertRaises(ValueError):
+            check_month(13)
+
+    def test_check_year_in_range(self):
+        with self.assertRaises(ValueError):
+            check_year(2024)
+        with self.assertRaises(ValueError):
+            check_year(-1)
 
 
 if __name__ == '__main__':
